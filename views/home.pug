@@ -1,6 +1,8 @@
 extends layouts/main-layout.pug
    
 block content   
-    h1 This is awesome
+    +createPostForm(userLoggedIn)
+    .postsContainer
 
-    p #{userLoggedIn.firstName}
+block scripts 
+    script(src="/js/home.js") 

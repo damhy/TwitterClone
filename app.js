@@ -30,14 +30,20 @@ const loginRoute = require("./routes/loginRoutes");
 const registerRoute = require("./routes/registerRoutes");
 const logoutRoute = require("./routes/logout");
 
+// API Ruutes
+const postsApiRoute = require("./routes/api/posts");
+
 app.use("/login", loginRoute);
 app.use("/register", registerRoute);
 app.use("/logout", logoutRoute);
+
+app.use("/api/posts", postsApiRoute);
 
 app.get("/", middleware.requireLogin, (req, res, next) => {
   const payload = {
     pageTitle: "Home",
     userLoggedIn: req.session.user,
+    userLoggedInJs: JSON.stringify(req.session.user),
   };
 
   res.status(200).render("home", payload);
